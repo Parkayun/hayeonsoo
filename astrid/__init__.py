@@ -3,7 +3,7 @@
     astrid
     ~~~~~~
 
-    A simple rest framework based on aiohttp.
+    A simple web framework based on aiohttp.
 """
 
 __version__ = '0.0.1'
