@@ -27,6 +27,7 @@ class Astrid(object):
                                                      host, port)
             return srv
 
+        self.loop.run_until_complete(_run())
         try:
             print('Server started with', host, str(port))
             self.loop.run_forever()
