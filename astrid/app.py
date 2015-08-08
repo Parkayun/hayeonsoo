@@ -9,6 +9,15 @@ class Astrid(object):
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop)
 
+    def add_payload(self, payload, handler):
+        self.app.router.add_route('GET', payload, handler)
+
+    def route(self, payload):
+        def _decorator(handler):
+            self.add_payload(payload, handler)
+            return handler
+        return _decorator
+
     def run(self):
         def _run():
             srv = yield from self.loop.create_server(self.app.make_handler(),
