@@ -10,7 +10,7 @@ class Astrid(object):
         self.app = web.Application(loop=self.loop)
 
     def add_payload(self, payload, handler):
-        self.app.router.add_route('GET', payload, handler)
+        self.app.router.add_route('GET', payload, asyncio.coroutine(handler))
 
     def route(self, payload):
         def _decorator(handler):
@@ -19,6 +19,7 @@ class Astrid(object):
         return _decorator
 
     def run(self):
+        @asyncio.coroutine
         def _run():
             srv = yield from self.loop.create_server(self.app.make_handler(),
                                                      '127.0.0.1', 8080)
