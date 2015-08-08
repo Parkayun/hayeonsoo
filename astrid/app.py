@@ -1,4 +1,6 @@
 # -*- coding:utf-8 -*-
+import sys
+
 import asyncio
 from aiohttp import web
 
@@ -26,4 +28,7 @@ class Astrid(object):
             return srv
 
         self.loop.run_until_complete(_run())
-        self.loop.run_forever()
+        try:
+            self.loop.run_forever()
+        except KeyboardInterrupt:
+            sys.stdout.write('\n')
