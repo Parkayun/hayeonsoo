@@ -11,12 +11,14 @@ class Astrid(object):
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop)
 
-    def add_payload(self, payload, handler):
-        self.app.router.add_route('GET', payload, asyncio.coroutine(handler))
+    def add_payload(self, payload, handler, methods):
+        for method in methods:
+            self.app.router.add_route(method, payload,
+                                      asyncio.coroutine(handler))
 
-    def route(self, payload):
+    def route(self, payload, methods=['GET']):
         def _decorator(handler):
-            self.add_payload(payload, handler)
+            self.add_payload(payload, handler, methods)
             return handler
         return _decorator
 
