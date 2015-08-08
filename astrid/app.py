@@ -29,7 +29,7 @@ class Astrid(object):
 
         self.loop.run_until_complete(_run())
         try:
-            print('Server started with', host, str(port))
+            print('Server started with', host+":"+str(port))
             self.loop.run_forever()
         except KeyboardInterrupt:
             print('')
