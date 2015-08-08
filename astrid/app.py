@@ -20,15 +20,15 @@ class Astrid(object):
             return handler
         return _decorator
 
-    def run(self):
+    def run(self, host='127.0.0.1', port=8080):
         @asyncio.coroutine
         def _run():
             srv = yield from self.loop.create_server(self.app.make_handler(),
-                                                     '127.0.0.1', 8080)
+                                                     host, port)
             return srv
 
-        self.loop.run_until_complete(_run())
         try:
+            print('Server started with', host, str(port))
             self.loop.run_forever()
         except KeyboardInterrupt:
-            sys.stdout.write('\n')
+            print('')
