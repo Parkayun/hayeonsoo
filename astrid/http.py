@@ -6,7 +6,7 @@ import json
 from aiohttp.web import Response
 
 
-def response(body, content_type='text/plain; charset=utf-8'):
+def response(body, content_type='text/html; charset=utf-8'):
     kwargs = {'body': body, 'content_type': content_type}
 
     if isinstance(body, str):
