@@ -10,6 +10,8 @@ Quick start
 
 .. sourcecode:: python
 
+   import os
+
    from astrid import Astrid
    from astrid.http import render, response
 
@@ -25,10 +27,10 @@ Quick start
 
    @app.route('/json')
    def json_handler(request):
-       return response({"Hello": u"세계"})
+       return response({"Hello": "세계"})
 
    @app.route('/render')
    def render_handler(request):
-       return render('index.html', {'message': 'Hello World'})
+       return render('index.html', {'message': "Hello World"})
 
    app.run()
