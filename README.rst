@@ -10,7 +10,6 @@ Quick start
 
 .. sourcecode:: python
 
-   # -*- coding:utf-8 -*-
    from astrid import Astrid
    from astrid.http import response
 
