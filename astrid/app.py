@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import os
 import sys
 
 import asyncio
@@ -7,9 +8,10 @@ from aiohttp import web
 
 class Astrid(object):
 
-    def __init__(self):
+    def __init__(self, template_path='/'):
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop)
+        Astrid.template_path = template_path
 
     def add_payload(self, payload, handler, methods):
         for method in methods:
@@ -35,3 +37,7 @@ class Astrid(object):
             self.loop.run_forever()
         except KeyboardInterrupt:
             print('')
+
+
+def get_template_path():
+    return Astrid.template_path
