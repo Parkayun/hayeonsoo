@@ -1,16 +1,18 @@
 import os
 import sys
-
 import asyncio
+
 from aiohttp import web
+from jinja2 import FileSystemLoader
+from jinja2.environment import Environment
 
 
 class Astrid(object):
 
-    def __init__(self, template_path='/'):
+    def __init__(self, template_path='./'):
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop)
-        Astrid.template_path = template_path
+        self.setup_jinja(template_path)
 
     def add_payload(self, payload, handler, methods):
         for method in methods:
@@ -37,6 +39,13 @@ class Astrid(object):
         except KeyboardInterrupt:
             print('')
 
+    @staticmethod
+    def setup_jinja(template_path):
+        _path = os.path.abspath(template_path)
 
-def get_template_path():
-    return Astrid.template_path
+        Astrid.jinja_env = Environment()
+        Astrid.jinja_env.loader = FileSystemLoader(_path)
+
+
+def get_jinja_env():
+    return Astrid.jinja_env
