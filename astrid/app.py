@@ -30,6 +30,7 @@ class Astrid(object):
         def _run():
             srv = yield from self.loop.create_server(self.app.make_handler(),
                                                      host, port)
+            print(123123)
             return srv
 
         self.loop.run_until_complete(_run())

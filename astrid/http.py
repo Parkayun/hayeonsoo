@@ -2,15 +2,18 @@ import os
 import json
 
 from aiohttp.web import Response
-from jinja2 import Template
+from jinja2.exceptions import TemplateNotFound
 
 from .app import get_jinja_env
 
 
 def render(html, data):
-    body = b'wrong template path'
-    template = get_jinja_env().get_template(html)
-    body = template.render(**data).encode('utf-8')
+    body = ' '.join(('wrong template path,', html)).encode('utf-8')
+    try:
+        template = get_jinja_env().get_template(html)
+        body = template.render(**data).encode('utf-8')
+    except TemplateNotFound:
+        pass
     return Response(body=body, content_type='text/html; charset=utf-8')
 
 
