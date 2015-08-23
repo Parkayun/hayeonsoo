@@ -8,13 +8,13 @@ from .app import get_jinja_env
 
 
 def render(html, data):
-    body = ' '.join(('wrong template path,', html)).encode('utf-8')
+    body = b''
     try:
         template = get_jinja_env().get_template(html)
         body = template.render(**data).encode('utf-8')
     except TemplateNotFound:
-        pass
-    return Response(body=body, content_type='text/html; charset=utf-8')
+        body = ' '.join(('wrong template path,', html)).encode('utf-8')
+    return response(body)
 
 
 def response(body, content_type='text/html; charset=utf-8'):
