@@ -7,7 +7,7 @@ from jinja2.exceptions import TemplateNotFound
 from .app import get_jinja_env
 
 
-def render(html, data):
+def render(html, data={}):
     body = b''
     try:
         template = get_jinja_env().get_template(html)
