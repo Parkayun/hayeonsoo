@@ -7,7 +7,7 @@ from astrid import __version__
 setup(
     name="astrid",
     version=__version__,
-    packages=["astrid"],
+    packages=["astrid", "astrid.middleware"],
     install_requires=["aiohttp>=0.17.0", "Jinja2>=2.8"],
     author="Ayun Park",
     author_email="iamparkayun@gmail.com",
