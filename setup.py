@@ -1,12 +1,15 @@
 # -*- coding:utf-8 -*-
+import re
 from setuptools import setup
 
-from astrid import __version__
 
+with open('astrid/__init__.py') as f:
+    version = re.search(r'__version__\s*=\s*\'(.+?)\'', f.read()).group(1)
+assert version
 
 setup(
     name="astrid",
-    version=__version__,
+    version=version,
     packages=["astrid", "astrid.middleware"],
     install_requires=["aiohttp>=0.17.0", "Jinja2>=2.8"],
     author="Ayun Park",
