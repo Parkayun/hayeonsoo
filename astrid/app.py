@@ -31,16 +31,22 @@ class Astrid(object):
     def run(self, host='127.0.0.1', port=8080):
         @asyncio.coroutine
         def _run():
-            srv = yield from self.loop.create_server(self.app.make_handler(),
-                                                     host, port)
-            return srv
+            self.handler = self.app.make_handler()
+            _srv = yield from self.loop.create_server(self.handler, host, port)
+            return _srv
 
-        self.loop.run_until_complete(_run())
+        self.srv = self.loop.run_until_complete(_run())
         try:
             print('Server started with http://', host+":"+str(port), '\n')
             self.loop.run_forever()
         except KeyboardInterrupt:
             print('')
+        finally:
+            self.loop.run_until_complete(self.handler.finish_connections(1.0))
+            self.srv.close()
+            self.loop.run_until_complete(self.srv.wait_closed())
+            self.loop.run_until_complete(self.app.close())
+        self.loop.close()
 
     @staticmethod
     def setup_jinja(template_path):
