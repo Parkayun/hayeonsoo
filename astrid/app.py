@@ -32,8 +32,7 @@ class Astrid(object):
         @asyncio.coroutine
         def _run():
             self.handler = self.app.make_handler()
-            _srv = yield from self.loop.create_server(self.handler, host, port)
-            return _srv
+            return (yield from self.loop.create_server(self.handler, host, port))
 
         self.srv = self.loop.run_until_complete(_run())
         try:
