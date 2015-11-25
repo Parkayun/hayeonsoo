@@ -19,8 +19,8 @@ class Astrid(object):
 
     def add_payload(self, payload, handler, methods):
         for method in methods:
-            self.app.router.add_route(method, payload,
-                                      asyncio.coroutine(handler))
+            _handler = handler if asyncio.iscoroutinefunction(handler) else asyncio.coroutine(handler)
+            self.app.router.add_route(method, payload, _handler)
 
     def route(self, payload, methods=['GET']):
         def _decorator(handler):
