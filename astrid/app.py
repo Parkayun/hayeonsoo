@@ -14,17 +14,22 @@ class Astrid(object):
     def __init__(self, template_path='./', middlewares=[]):
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop,
-                                   middlewares=middlewares+[dev.request_logger])
+                                   middlewares=middlewares+[dev.request_logger,
+                                                            dev.web_socket])
         self.setup_jinja(template_path)
 
-    def add_payload(self, payload, handler, methods):
+    def add_payload(self, payload, handler, methods, is_websocket=False):
         for method in methods:
             _handler = handler if asyncio.iscoroutinefunction(handler) else asyncio.coroutine(handler)
             self.app.router.add_route(method, payload, _handler)
 
-    def route(self, payload, methods=['GET']):
+    def route(self, payload, methods=['GET'], is_websocket=False):
         def _decorator(handler):
             self.add_payload(payload, handler, methods)
+            if is_websocket:
+                if not hasattr(self.app, 'web_socket_handlers'):
+                    setattr(self.app, 'web_socket_handlers', [])
+                self.app.web_socket_handlers.append(handler.__name__)
             return handler
         return _decorator
 
