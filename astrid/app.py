@@ -27,9 +27,9 @@ class Astrid(object):
         def _decorator(handler):
             self.add_payload(payload, handler, methods)
             if is_websocket:
-                if not hasattr(self.app, 'web_socket_handlers'):
-                    setattr(self.app, 'web_socket_handlers', [])
-                self.app.web_socket_handlers.append(handler.__name__)
+                if not hasattr(self.app, 'websocket_handlers'):
+                    setattr(self.app, 'websocket_handlers', [])
+                self.app.websocket_handlers.append(handler.__name__)
             return handler
         return _decorator
 
