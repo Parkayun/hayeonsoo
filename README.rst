@@ -14,6 +14,7 @@ Quick start
 
    from astrid import Astrid
    from astrid.http import render, response
+   from astrid.utils import MessageType
 
 
    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -32,5 +33,18 @@ Quick start
    @app.route('/render')
    def render_handler(request):
        return render('index.html', {'message': "Hello World"})
+
+   @app.route('/ws', is_websocket=True)
+   def websocket_handler(requset, ws):
+       await ws.prepare(request)
+       async for msg in ws:
+           if msg.tp == MessageType.text:
+               if msg.data != "close":
+                   ws.send_str("Hello Websocket")
+               else:
+                   await ws.close()
+           elif msg.tp == MessageType.error:
+               print("Exception: %s" % ws.exception())
+       return ws
 
    app.run()
