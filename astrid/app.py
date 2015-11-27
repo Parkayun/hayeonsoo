@@ -18,7 +18,7 @@ class Astrid(object):
                                                             dev.web_socket])
         self.setup_jinja(template_path)
 
-    def add_payload(self, payload, handler, methods, is_websocket=False):
+    def add_payload(self, payload, handler, methods):
         for method in methods:
             _handler = handler if asyncio.iscoroutinefunction(handler) else asyncio.coroutine(handler)
             self.app.router.add_route(method, payload, _handler)
