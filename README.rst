@@ -2,6 +2,16 @@ astrid
 ======
 
 
+.. image:: https://secure.travis-ci.org/Add2paper/astrid.svg?branch=master
+   :alt: Build Status
+   :target: https://travis-ci.org/Add2paper/astrid
+
+
+.. image:: https://img.shields.io/coveralls/Add2paper/astrid.svg
+   :alt: Coverage Status
+   :target: https://coveralls.io/r/Add2paper/astrid
+
+
 A simple web framework based on aiohttp.
 
 
