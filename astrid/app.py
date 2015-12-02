@@ -23,13 +23,20 @@ class Astrid(object):
             _handler = handler if asyncio.iscoroutinefunction(handler) else asyncio.coroutine(handler)
             self.app.router.add_route(method, payload, _handler)
 
+    def add_route(self, payload, handler, methods, is_websocket):
+        self.add_payload(payload, handler, methods)
+        if is_websocket:
+            if not hasattr(self.app, 'websocket_handlers'):
+                setattr(self.app, 'websocket_handlers', [])
+            self.app.websocket_handlers.append(handler.__name__)
+
+    def register_container(self, container, prefix=''):
+        for view in container.views:
+            self.add_route('%s%s' % (prefix, view[0]), *view[1:])
+
     def route(self, payload, methods=['GET'], is_websocket=False):
         def _decorator(handler):
-            self.add_payload(payload, handler, methods)
-            if is_websocket:
-                if not hasattr(self.app, 'websocket_handlers'):
-                    setattr(self.app, 'websocket_handlers', [])
-                self.app.websocket_handlers.append(handler.__name__)
+            self.add_route(payload, handler, methods, is_websocket)
             return handler
         return _decorator
 
