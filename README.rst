@@ -5,6 +5,16 @@ astrid
 A simple web framework based on aiohttp.
 
 
+Installing
+~~~~~~~~~~
+
+This is under development, You should install via Github.
+
+.. sourcecode:: bash
+
+   ~ $ pip install git+https://github.com/Add2paper/astrid.git
+
+
 Quick start
 -----------
 app.py
