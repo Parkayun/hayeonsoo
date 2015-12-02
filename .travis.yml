@@ -3,7 +3,6 @@ sudo: false
 python:
   - "3.5"
 install:
-  - python setup.py install
   - pip install pytest==2.8.0 pytest-cov==2.2.0 coveralls
 script:
   - py.test --cov=astrid
