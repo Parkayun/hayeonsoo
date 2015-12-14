@@ -1,4 +1,3 @@
-import os
 import json
 
 from aiohttp.web import Response
@@ -8,7 +7,6 @@ from .app import get_jinja_env
 
 
 def render(html, data={}):
-    body = b''
     try:
         template = get_jinja_env().get_template(html)
         body = template.render(**data).encode('utf-8')
