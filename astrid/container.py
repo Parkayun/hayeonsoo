@@ -2,7 +2,11 @@ class Container(object):
 
     views = []
 
-    def route(self, payload, methods=['GET'], is_websocket=False):
+    def route(self, payload, methods=None, is_websocket=None):
+        if methods is None:
+            methods = ["GET"]
+        if is_websocket is None:
+            is_websocket = False
         def _decorator(handler):
             self.views.append((payload, handler, methods, is_websocket))
             return handler
