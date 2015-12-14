@@ -85,3 +85,17 @@ sample.py
            elif msg.tp == MessageType.error:
                print("Exception: %s" % ws.exception())
        return ws
+
+
+Working with Gunicorn
+~~~~~~~~~~~~~~~~~~~~~
+
+.. sourcecode:: bash
+
+   ~ $ gunicorn app:astrid.app --worker-class aiohttp.worker.GunicornWebWorker
+   
+Reload
+
+.. sourcecode:: bash
+
+   ~ $ kill -9 {gunicorn pid}
