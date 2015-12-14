@@ -8,7 +8,7 @@ from aiohttp.web import WebSocketResponse
 def request_logger(app, handler):
     @asyncio.coroutine
     def middleware(request):
-        print(datetime.now(), request._method, request.path)
+        request.app.stdout.write("".join((datetime.now().__str__(), request.path)))
         return (yield from handler(request))
     return middleware
 

@@ -16,6 +16,7 @@ class Astrid(object):
         self.app = web.Application(loop=self.loop,
                                    middlewares=middlewares+[dev.request_logger,
                                                             dev.web_socket])
+        self.app.stdout = sys.stdout
         self.setup_jinja(template_path)
 
     def add_payload(self, payload, handler, methods):
@@ -48,10 +49,10 @@ class Astrid(object):
 
         self.srv = self.loop.run_until_complete(_run())
         try:
-            print('Server started with http://', host+":"+str(port), '\n')
+            self.app.stdout.write(''.join(('Server started with http://', host+":"+str(port), '\n')))
             self.loop.run_forever()
         except KeyboardInterrupt:
-            print('')
+            self.app.stdout.write('')
         finally:
             self.loop.run_until_complete(self.handler.finish_connections(1.0))
             self.srv.close()
