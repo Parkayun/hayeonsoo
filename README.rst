@@ -2,14 +2,14 @@ astrid
 ======
 
 
-.. image:: https://secure.travis-ci.org/Add2paper/astrid.svg?branch=master
+.. image:: https://secure.travis-ci.org/Parkayun/astrid.svg?branch=master
    :alt: Build Status
-   :target: https://travis-ci.org/Add2paper/astrid
+   :target: https://travis-ci.org/Parkayun/astrid
 
 
-.. image:: https://img.shields.io/coveralls/Add2paper/astrid.svg
+.. image:: https://img.shields.io/coveralls/Parkayun/astrid.svg
    :alt: Coverage Status
-   :target: https://coveralls.io/r/Add2paper/astrid
+   :target: https://coveralls.io/r/Parkayun/astrid
 
 
 A simple web framework based on aiohttp.
@@ -22,7 +22,7 @@ This is under development, You should install via Github.
 
 .. sourcecode:: bash
 
-   ~ $ pip install git+https://github.com/Add2paper/astrid.git
+   ~ $ pip install git+https://github.com/Parkayun/astrid.git
 
 
 Quick start
