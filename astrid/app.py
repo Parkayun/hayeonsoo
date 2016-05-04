@@ -2,6 +2,7 @@ import os
 import sys
 import asyncio
 
+import uvloop
 from aiohttp import web
 from jinja2 import FileSystemLoader
 from jinja2.environment import Environment
@@ -12,6 +13,7 @@ from .middleware import dev
 class Astrid(object):
 
     def __init__(self, template_path='./', middlewares=[]):
+        asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
         self.loop = asyncio.get_event_loop()
         self.app = web.Application(loop=self.loop,
                                    middlewares=middlewares+[dev.request_logger,
@@ -49,6 +51,7 @@ class Astrid(object):
 
         self.srv = self.loop.run_until_complete(_run())
         try:
+            print(id(self.app.stdout))
             self.app.stdout.write(''.join(('Server started with http://', host+":"+str(port), '\n')))
             self.loop.run_forever()
         except KeyboardInterrupt:
