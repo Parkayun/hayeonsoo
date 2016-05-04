@@ -51,7 +51,6 @@ class Astrid(object):
 
         self.srv = self.loop.run_until_complete(_run())
         try:
-            print(id(self.app.stdout))
             self.app.stdout.write(''.join(('Server started with http://', host+":"+str(port), '\n')))
             self.loop.run_forever()
         except KeyboardInterrupt:
