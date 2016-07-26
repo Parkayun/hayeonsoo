@@ -17,7 +17,7 @@ def test_response():
 
     for case in test_cases:
         content, expect_body, expect_status, expect_content_type = case
-        resp = response(content)
+        resp = response(body=content, status_code=expect_status)
         assert resp.body == expect_body
         assert resp.status == expect_status
         assert resp.content_type == expect_content_type

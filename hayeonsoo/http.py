@@ -15,8 +15,8 @@ def render(html, data={}):
     return response(body)
 
 
-def response(body, content_type='text/html; charset=utf-8'):
-    kwargs = {'body': body, 'content_type': content_type}
+def response(body, content_type='text/html; charset=utf-8', status_code=200):
+    kwargs = {'body': body, 'content_type': content_type, 'status': status_code}
 
     if isinstance(body, str):
         kwargs['body'] = body.encode('utf-8')
