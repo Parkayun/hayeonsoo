@@ -34,7 +34,7 @@ app.py
 
    import os
 
-   from hayeonsoo import hayeonsoo
+   from hayeonsoo import Hayeonsoo
 
    from sample import container
 
@@ -42,7 +42,7 @@ app.py
    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
    TEMPLATES = os.path.join(BASE_DIR, 'templates')
 
-   hayeonsoo = hayeonsoo(template_path=TEMPLATES)
+   hayeonsoo = Hayeonsoo(template_path=TEMPLATES)
 
    hayeonsoo.register_container(container, prefix='/test')
 
