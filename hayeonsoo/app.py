@@ -10,7 +10,7 @@ from jinja2.environment import Environment
 from .middleware import dev
 
 
-class Astrid(object):
+class Hayeonsoo(object):
 
     def __init__(self, template_path='./', middlewares=[]):
         asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
@@ -66,9 +66,9 @@ class Astrid(object):
     def setup_jinja(template_path):
         _path = os.path.abspath(template_path)
 
-        Astrid.jinja_env = Environment()
-        Astrid.jinja_env.loader = FileSystemLoader(_path)
+        Hayeonsoo.jinja_env = Environment()
+        Hayeonsoo.jinja_env.loader = FileSystemLoader(_path)
 
 
 def get_jinja_env():
-    return Astrid.jinja_env
+    return Hayeonsoo.jinja_env

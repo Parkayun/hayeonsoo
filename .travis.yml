@@ -5,6 +5,6 @@ python:
 install:
   - pip install aiohttp>=0.17.0 Jinja2>=2.8 pytest==2.8.0 pytest-cov==2.2.0 uvloop>=0.4.10 coveralls
 script:
-  - py.test --cov=astrid
+  - py.test --cov=hayeonsoo
 after_success:
   - coveralls

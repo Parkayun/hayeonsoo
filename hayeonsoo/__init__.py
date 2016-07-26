@@ -1,10 +1,10 @@
 """
-    astrid
-    ~~~~~~
+    hayeonsoo
+    ~~~~~~~~~
 
-    A simple web framework based on aiohttp.
+    aiohttp for humans.
 """
 
 __version__ = '0.0.1'
 
-from .app import Astrid
+from .app import Hayeonsoo

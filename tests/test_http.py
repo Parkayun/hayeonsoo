@@ -3,7 +3,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
 
-from hayeonsoo.app import Astrid
+from hayeonsoo.app import Hayeonsoo
 from hayeonsoo.http import response, render
 
 
@@ -41,7 +41,7 @@ def test_render(tmpdir):
     from aiohttp.web import Response
     for case in test_cases:
         template_path, data, expect_body, expect_status, expect_content_type = case
-        _ = Astrid(template_path=template_path)
+        _ = Hayeonsoo(template_path=template_path)
         obj = render("test.html", data)
         assert type(obj) is Response
         assert obj.body == expect_body
