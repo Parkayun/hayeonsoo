@@ -3,8 +3,8 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
 
-from astrid.app import Astrid
-from astrid.http import response, render
+from hayeonsoo.app import Astrid
+from hayeonsoo.http import response, render
 
 
 def test_response():

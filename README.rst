@@ -1,18 +1,18 @@
-astrid
+hayeonsoo
 ======
 
 
-.. image:: https://secure.travis-ci.org/Parkayun/astrid.svg?branch=master
+.. image:: https://secure.travis-ci.org/Parkayun/hayeonsoo.svg?branch=master
    :alt: Build Status
-   :target: https://travis-ci.org/Parkayun/astrid
+   :target: https://travis-ci.org/Parkayun/hayeonsoo
 
 
-.. image:: https://img.shields.io/coveralls/Parkayun/astrid.svg
+.. image:: https://img.shields.io/coveralls/Parkayun/hayeonsoo.svg
    :alt: Coverage Status
-   :target: https://coveralls.io/r/Parkayun/astrid
+   :target: https://coveralls.io/r/Parkayun/hayeonsoo
 
 
-A simple web framework based on aiohttp.
+aiohttp for humans.
 
 
 Installing
@@ -22,7 +22,7 @@ This is under development, You should install via Github.
 
 .. sourcecode:: bash
 
-   ~ $ pip install git+https://github.com/Parkayun/astrid.git
+   ~ $ pip install git+https://github.com/Parkayun/hayeonsoo.git
 
 
 Quick start
@@ -34,7 +34,7 @@ app.py
 
    import os
 
-   from astrid import Astrid
+   from hayeonsoo import hayeonsoo
 
    from sample import container
 
@@ -42,20 +42,20 @@ app.py
    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
    TEMPLATES = os.path.join(BASE_DIR, 'templates')
 
-   astrid = Astrid(template_path=TEMPLATES)
+   hayeonsoo = hayeonsoo(template_path=TEMPLATES)
 
-   astrid.register_container(container, prefix='/test')
+   hayeonsoo.register_container(container, prefix='/test')
 
    if __name__ == '__main__':
-       astrid.run()
+       hayeonsoo.run()
 
 sample.py
 
 .. sourcecode:: python
 
-   from astrid.http import render, response
-   from astrid.utils import MessageType
-   from astrid.container import Container
+   from hayeonsoo.http import render, response
+   from hayeonsoo.utils import MessageType
+   from hayeonsoo.container import Container
 
 
    container = Container()
@@ -92,7 +92,7 @@ Working with Gunicorn
 
 .. sourcecode:: bash
 
-   ~ $ gunicorn app:astrid.app --worker-class aiohttp.worker.GunicornWebWorker
+   ~ $ gunicorn app:hayeonsoo.app --worker-class aiohttp.worker.GunicornWebWorker
    
 Reload
 

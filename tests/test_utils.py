@@ -1,7 +1,7 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from astrid.utils import MessageType
+from hayeonsoo.utils import MessageType
 
 
 def test_message_type():
