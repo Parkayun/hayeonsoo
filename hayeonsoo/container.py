@@ -1,6 +1,9 @@
 class Container(object):
 
-    views = []
+    views = None
+
+    def __init__(self):
+        self.views = []
 
     def route(self, payload, methods=None, is_websocket=None):
         if methods is None:
