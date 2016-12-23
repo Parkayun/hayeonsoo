@@ -11,9 +11,10 @@ def test_message_type():
         ('ping', 0x9),
         ('pong', 0xa),
         ('close', 0x8),
-        ('closed', 20),
-        ('error', 21),
+        ('closed', 0x101),
+        ('error', 0x102),
     )
     for case in test_cases:
         attribute, expect_value = case
         assert getattr(MessageType, attribute) == expect_value
+

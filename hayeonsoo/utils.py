@@ -1,7 +1,7 @@
 __all__ = ('MessageType',)
 
-from aiohttp import MsgType
+from aiohttp import WSMsgType
 
 
-MessageType = MsgType
+MessageType = WSMsgType
 
