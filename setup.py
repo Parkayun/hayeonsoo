@@ -12,7 +12,7 @@ setup(
     version=version,
     packages=["hayeonsoo", "hayeonsoo.middleware"],
     install_requires=["aiohttp>=0.17.0", "Jinja2>=2.8", "uvloop>=0.4.10"],
-    tests_require=["pytest==2.8.3", "pytest-cov==2.2.0"],
+    tests_require=["pytest==9.0.3", "pytest-cov==2.2.0"],
     author="Ayun Park",
     author_email="iamparkayun@gmail.com",
     description="aiohttp for humans.",
